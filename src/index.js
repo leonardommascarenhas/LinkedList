@@ -10,13 +10,15 @@ class List {
     this.head = null;
   }
   append(value) {
-    if (this.head === null) this.head = new Node(value);
-    else {
+    const newNode = new Node(value);
+    if (this.head === null) {
+      this.head = newNode;
+    } else {
       let temp = this.head;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
       }
-      temp.nextNode = new Node(value);
+      temp.nextNode = newNode;
     }
   }
   prepend(value) {
@@ -63,14 +65,25 @@ class List {
     return temp;
   }
   pop() {
-    if (this.head === null) return null;
-    else {
-      let temp = this.head;
-      while (temp.nextNode !== null) {
-        temp = temp.nextNode;
-      }
-      temp == null;
-      return this.head;
+    let temp = this.head;
+    while (temp.nextNode.nextNode != null) {
+      temp = temp.nextNode;
     }
+    temp.nextNode = null;
   }
 }
+
+let teste = new List();
+
+teste.append("a");
+console.log(teste);
+teste.append("a");
+console.log(teste);
+teste.append("3");
+console.log(teste);
+teste.append("a");
+teste.append("2");
+teste.append("b");
+teste.pop();
+console.log(teste.getTail());
+console.log(teste.pop());
