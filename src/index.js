@@ -1,15 +1,25 @@
-import _ from "lodash";
-
-function component() {
-  const element = document.createElement("div");
-  const btn = document.createElement("button");
-
-  btn.innerHTML = "Click me and check the console!";
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.nextNode = null;
+  }
 }
 
-document.body.appendChild(component());
+class List {
+  constructor() {
+    this.head = null;
+  }
+  append(value) {
+    if (this.head === null) this.head = new Node(value);
+    else {
+      let temp = this.head;
+      while (temp.nextNode !== null) {
+        temp = temp.nextNode;
+      }
+      temp.nextNode = new Node(value);
+    }
+  }
+  prepend(value) {
+    if (this.head === null) this.head = new Node(value);
+  }
+}
