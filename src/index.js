@@ -27,11 +27,10 @@ class List {
     this.head.nextNode = temp;
   }
   size() {
-    size = 0;
+    let size = 0;
     if (this.head === null) return size;
     else {
       let temp = this.head;
-      size = 1;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
         size++;
@@ -71,19 +70,31 @@ class List {
     }
     temp.nextNode = null;
   }
+  contains(value) {
+    let temp = this.head;
+    while (temp.value != value) {
+      temp = temp.nextNode;
+      if (temp.nextNode == null) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
 }
 
 let teste = new List();
 
 teste.append("a");
-console.log(teste);
 teste.append("a");
-console.log(teste);
-teste.append("3");
-console.log(teste);
 teste.append("a");
-teste.append("2");
+teste.append("a");
+teste.append("a");
+teste.append("a");
+teste.append("a");
 teste.append("b");
-teste.pop();
-console.log(teste.getTail());
-console.log(teste.pop());
+teste.append("a");
+teste.append("a");
+teste.append("a");
+
+console.log(teste.contains(a));
