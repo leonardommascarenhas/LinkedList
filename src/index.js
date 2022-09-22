@@ -11,9 +11,8 @@ class List {
   }
   append(value) {
     const newNode = new Node(value);
-    if (this.head === null) {
-      this.head = newNode;
-    } else {
+    if (this.head == null) this.head = newNode;
+    else {
       let temp = this.head;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
@@ -23,13 +22,13 @@ class List {
   }
   prepend(value) {
     let temp = this.head;
-    this.head = new Node(value);
-    this.head.nextNode = temp;
+    temp.value = value;
   }
   size() {
     let size = 0;
     if (this.head === null) return size;
     else {
+      size++;
       let temp = this.head;
       while (temp.nextNode !== null) {
         temp = temp.nextNode;
@@ -39,62 +38,52 @@ class List {
     }
   }
   getHead() {
-    return this.head;
+    if (this.head == null) return "no value";
+    return this.head.value;
   }
   getTail() {
-    if (this.head === null) return this.head;
-    else {
-      let temp = this.head;
-      while (temp.nextNode !== null) {
-        temp = temp.nextNode;
-      }
-      return temp;
+    if (this.head == null) return null;
+    if (this.head.nextNode == null) return this.head;
+    let temp = this.head;
+    while (temp.nextNode !== null) {
+      temp = temp.nextNode;
     }
+    return temp.value;
   }
   at(index) {
-    count = 0;
-    if (this.head === null) return null;
-    if (index === 0) return this.head;
-    if (index > this.size()) return "Not found";
+    let count = 0;
+    let lastIndex = this.size() - 1;
+    if (index == 0) return this.head.value;
+    if (index > lastIndex || index < 0) return "error";
     let temp = this.head;
-    while (count !== index) {
+    while (index !== count) {
       count++;
       temp = temp.nextNode;
     }
-    return temp;
+    return temp.value;
   }
   pop() {
+    if (this.head == null) return;
     let temp = this.head;
-    while (temp.nextNode.nextNode != null) {
+    while (temp.nextNode.nextNode !== null) {
       temp = temp.nextNode;
     }
     temp.nextNode = null;
   }
   contains(value) {
     let temp = this.head;
-    while (temp.value != value) {
+    while (temp.nextNode.value !== value) {
       temp = temp.nextNode;
-      if (temp.nextNode == null) {
-        return false;
-      } else {
-        return true;
-      }
     }
+    return true;
   }
 }
 
 let teste = new List();
 
 teste.append("a");
-teste.append("a");
-teste.append("a");
-teste.append("a");
-teste.append("a");
-teste.append("a");
-teste.append("a");
 teste.append("b");
-teste.append("a");
-teste.append("a");
-teste.append("a");
+teste.append("c");
+teste.pop();
 
-console.log(teste.contains(a));
+console.log(teste.contains("a"));
