@@ -74,6 +74,7 @@ class List {
     let temp = this.head;
     while (temp.nextNode.value !== value) {
       temp = temp.nextNode;
+      if (temp.nextNode == null) return false;
     }
     return true;
   }
